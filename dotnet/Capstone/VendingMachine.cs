@@ -29,11 +29,7 @@ namespace Capstone
             else
             {
                 Console.WriteLine($"{inventory[itemSelected].MessageDisplay()}");
-            }
-            
-
-
-
+            }          
         }
 
     }
