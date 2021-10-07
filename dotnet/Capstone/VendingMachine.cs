@@ -6,5 +6,7 @@ namespace Capstone
 {
     public class VendingMachine
     {
+
+
     }
 }

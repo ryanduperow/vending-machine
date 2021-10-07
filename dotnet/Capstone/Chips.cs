@@ -6,11 +6,10 @@ namespace Capstone
 {
     public class Chips : Snack
     {
-        public Chips(string name, decimal price, int quantity)
+        public Chips(string name, decimal price)
         {
             Name = name;
             Price = price;
-            Quantity = quantity;
         }
 
         public override string MessageDisplay()

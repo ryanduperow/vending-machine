@@ -7,17 +7,17 @@ namespace Capstone
 {
     public class ExtractInventory
     {
-        public List<string[]> ReadInventoryFile(string directory, string fileName)
+        public Dictionary<string, Snack> ReadInventoryFile()
         {
-            
-            //string directory = Environment.CurrentDirectory;
-            //string fileName = "vendingmachine.csv";
 
-            
+            string directory = Environment.CurrentDirectory;
+            string fileName = "vendingmachine.csv";
+
+
             string fullPath = Path.Combine(directory, fileName);
-
+            Dictionary<string, Snack> inventoryItems = new Dictionary<string, Snack>();
             
-            List<string[]> inventoryItems = new List<string[]>();
+            //List<string[]> inventoryItems = new List<string[]>();
 
             try
             {
@@ -32,7 +32,23 @@ namespace Capstone
 
                         
                         string[] items = line.Split('|');
-                        inventoryItems.Add(items);
+
+                        if (items[3] == "Chips")
+                        {
+                            inventoryItems[items[0]] = new Chips(items[1], Decimal.Parse(items[2]));
+                        }
+                        else if (items[3] == "Drink")
+                        {
+                            inventoryItems[items[0]] = new Drink(items[1], Decimal.Parse(items[2]));
+                        }
+                        else if (items[3] == "Candy")
+                        {
+                            inventoryItems[items[0]] = new Candy(items[1], Decimal.Parse(items[2]));
+                        }
+                        else if (items[3] == "Gum")
+                        {
+                            inventoryItems[items[0]] = new Gum(items[1], Decimal.Parse(items[2]));
+                        }
                        
                     } 
                 }

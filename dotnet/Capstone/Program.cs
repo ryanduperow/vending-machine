@@ -7,17 +7,15 @@ namespace Capstone
     {
         public static void Main(string[] args)
         {
+            ExtractInventory ei = new ExtractInventory();
+            Dictionary<string, Snack> testDic = new Dictionary<string, Snack>();
+            testDic = ei.ReadInventoryFile();
 
-            List<string[]> list = new List<string[]>();
-            list = ExtractInventory.ReadInventoryFile(Environment.CurrentDirectory, "vendingmachine.csv");
-            foreach (string[] item in list)
+            foreach (KeyValuePair<string, Snack> dic in testDic)
             {
-                foreach (string itemthing in item)
-                {
-                    Console.Write($"{itemthing} ");
-                }
-                Console.WriteLine();
+                Console.WriteLine($"{dic.Key} has {dic.Value.Quantity} {dic.Value.Name}s at {dic.Value.Price}");
             }
+
 
         }
     }
