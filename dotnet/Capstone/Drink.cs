@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Capstone
 {
-    public class Beverage : Snack
+    public class Drink : Snack
     {
-        public Beverage (string name, decimal price, int quantity)
+        public Drink (string name, decimal price, int quantity)
         {
             Name = name;
             Price = price;

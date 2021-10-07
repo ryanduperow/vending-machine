@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Capstone
 {
@@ -6,7 +7,14 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+            List<string[]> list = new List<string[]>();
+            list = ExtractInventory.ReadInventoryFile();
+            foreach (string[] item in list)
+            {
+                Console.WriteLine(item[0]);
+            }
+
         }
     }
 }
