@@ -7,14 +7,14 @@ namespace Capstone
 {
     public class ExtractInventory
     {
-        public static List<string[]> ReadInventoryFile()
+        public List<string[]> ReadInventoryFile(string directory, string fileName)
         {
             
-            string directory = Environment.CurrentDirectory;
-            string filename = "vendingmachine.csv";
+            //string directory = Environment.CurrentDirectory;
+            //string fileName = "vendingmachine.csv";
 
             
-            string fullPath = Path.Combine(directory, filename);
+            string fullPath = Path.Combine(directory, fileName);
 
             
             List<string[]> inventoryItems = new List<string[]>();
@@ -44,11 +44,7 @@ namespace Capstone
             }
 
             return inventoryItems;
-            //// Print out each of the words
-            //foreach (string inventoryItem in inventoryItems)
-            //{
-            //    Console.WriteLine(inventoryItem);
-            //}
+            
         }
     }
 }

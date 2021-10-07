@@ -9,7 +9,7 @@ namespace Capstone
         {
 
             List<string[]> list = new List<string[]>();
-            list = ExtractInventory.ReadInventoryFile();
+            list = ExtractInventory.ReadInventoryFile(Environment.CurrentDirectory, "vendingmachine.csv");
             foreach (string[] item in list)
             {
                 foreach (string itemthing in item)
