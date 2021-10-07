@@ -10,7 +10,7 @@ namespace Capstone
         public Dictionary<string, Snack> ReadInventoryFile()
         {
 
-            string directory = Environment.CurrentDirectory;
+            string directory = @"C:\Users\Student\workspace\module1-capstone-c-team-4\dotnet";
             string fileName = "vendingmachine.csv";
 
 
@@ -33,9 +33,9 @@ namespace Capstone
                         
                         string[] items = line.Split('|');
 
-                        if (items[3] == "Chips")
+                        if (items[3] == "Chip")
                         {
-                            inventoryItems[items[0]] = new Chips(items[1], Decimal.Parse(items[2]));
+                            inventoryItems[items[0]] = new Chip(items[1], Decimal.Parse(items[2]));
                         }
                         else if (items[3] == "Drink")
                         {

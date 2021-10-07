@@ -11,10 +11,10 @@ namespace Capstone
             Dictionary<string, Snack> testDic = new Dictionary<string, Snack>();
             testDic = ei.ReadInventoryFile();
 
-            foreach (KeyValuePair<string, Snack> dic in testDic)
-            {
-                Console.WriteLine($"{dic.Key} has {dic.Value.Quantity} {dic.Value.Name}s at {dic.Value.Price}");
-            }
+            Output op = new Output();
+            op.DisplayInventory(testDic);
+
+
 
 
         }
