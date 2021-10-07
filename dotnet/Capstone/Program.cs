@@ -3,16 +3,20 @@ using System.Collections.Generic;
 
 namespace Capstone
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
 
             List<string[]> list = new List<string[]>();
             list = ExtractInventory.ReadInventoryFile();
             foreach (string[] item in list)
             {
-                Console.WriteLine(item[0]);
+                foreach (string itemthing in item)
+                {
+                    Console.Write($"{itemthing} ");
+                }
+                Console.WriteLine();
             }
 
         }
