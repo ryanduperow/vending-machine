@@ -16,4 +16,13 @@
     <ProjectReference Include="..\Capstone\Capstone.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="LogTest1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="test-1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
