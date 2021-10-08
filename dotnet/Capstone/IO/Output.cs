@@ -46,7 +46,10 @@ namespace Capstone
                 {
                     Console.WriteLine($"{item.Key} {item.Value.Name} ${item.Value.Price} QTY: SOLD OUT");
                 }
-                Console.WriteLine($"{item.Key} {item.Value.Name} ${item.Value.Price} QTY: {item.Value.Quantity}");
+                else
+                {
+                    Console.WriteLine($"{item.Key} {item.Value.Name} ${item.Value.Price} QTY: {item.Value.Quantity}");
+                }               
             }
         }
     }

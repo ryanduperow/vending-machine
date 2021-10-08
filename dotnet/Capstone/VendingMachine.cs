@@ -12,7 +12,7 @@ namespace Capstone
         }
 
         public Dictionary<string, Snack> Inventory { get; private set; }
-        decimal balance = 0;
+        public decimal Balance { get; set; } = 0;
 
         public void MainMenu()
         {
@@ -26,6 +26,7 @@ namespace Capstone
             if (menuInput == "1")
             {
                 Output.DisplayInventory(Inventory);
+                MainMenu();
             }
             else if (menuInput == "2")
             {
@@ -42,7 +43,7 @@ namespace Capstone
             Accounting ac = new Accounting();
 
             Output.DisplayPurchaseMenu();
-            Output.DisplayCurrentMoney(balance);
+            Output.DisplayCurrentMoney(Balance);
             string menuInput = Input.GetMenuInput();
             
 
@@ -51,22 +52,36 @@ namespace Capstone
                 Output.HowMuchMoney();
                 decimal amountFed = Input.GetMoney();
 
-                balance = ac.FeedMoney(balance, amountFed);
-                Output.DisplayCurrentMoney(balance);
+                Balance = ac.FeedMoney(Balance, amountFed);
+                LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} FEED MONEY: {amountFed} {Balance}");
+                Output.DisplayCurrentMoney(Balance);
                 PurchaseMenu();
             }
             else if (menuInput == "2")
             {
-                SelectSnack();
-                PurchaseMenu();
+                if (Balance <= 0)
+                {
+                    Console.WriteLine("Please add money before making a purchase");
+                    PurchaseMenu();
+                }
+                else
+                {
+                    string itemSelected = Input.GetMenuInput();
+                    SelectSnack(itemSelected);
+                    LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} {Inventory[itemSelected].Name} {itemSelected} {Balance + Inventory[itemSelected].Price} {Balance}");
+                    PurchaseMenu();
+                }
             }
             else if (menuInput == "3")
             {
-                ac.MakeChange(balance);
+                ac.MakeChange(Balance);
+                LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} GIVE CHANGE: {Balance} $0.00");
+                Balance = 0;
+                MainMenu();
             }
         }
 
-        public void SelectSnack()
+        public void SelectSnack(string itemSelected)
         {
             //Output op = new Output();
             //ExtractInventory ei = new ExtractInventory();
@@ -75,7 +90,7 @@ namespace Capstone
             //Dictionary<string, Snack> inventory = ei.ReadInventoryFile();
             Output.DisplayInventory(Inventory);
 
-            string itemSelected = Input.GetMenuInput();
+            //string itemSelected = Input.GetMenuInput();
 
             if (!Inventory.ContainsKey(itemSelected))
             {
@@ -90,9 +105,16 @@ namespace Capstone
                 Console.ReadLine();
                 PurchaseMenu();
             }
+            else if (Inventory[itemSelected].Price > Balance)
+            {
+                Console.WriteLine("Current balance is too low to make this purchase, please add more money");
+                Console.ReadLine();
+                PurchaseMenu();
+            }
+
             else
             {
-                balance = ac.PurchaseItem(balance, Inventory[itemSelected].Price);
+                Balance = ac.PurchaseItem(Balance, Inventory[itemSelected].Price);
                 InventoryMethods.AdjustInventory(Inventory, itemSelected);
                 Console.WriteLine($"{Inventory[itemSelected].MessageDisplay()}");
             }
