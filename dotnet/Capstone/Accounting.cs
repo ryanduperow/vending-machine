@@ -18,7 +18,7 @@ namespace Capstone
             return newBalance;
         }
 
-        public decimal CalculateTotalSales (decimal grossSales, decimal recentSale)
+        public decimal CalculateTotalSales(decimal grossSales, decimal recentSale)
         {
             grossSales += recentSale;
             return grossSales;
@@ -32,7 +32,13 @@ namespace Capstone
             int nickelCount = 0;
             int remainder = 0;
 
-            if (balanceInCents % 25 == 0)
+            Console.Clear();
+
+            if (balanceInCents == 0)
+            {
+                Console.WriteLine($"Your balance is 0, no change for you!");
+            }
+            else if (balanceInCents % 25 == 0)
             {
                 quarterCount = balanceInCents / 25;
                 Console.WriteLine($"Your change is {balance}, here are {quarterCount} quarters");
@@ -57,6 +63,10 @@ namespace Capstone
                 }
 
             }
+
+            Console.WriteLine("Press enter to continue");
+            Console.ReadLine();
+
             return 0;
         }
     }

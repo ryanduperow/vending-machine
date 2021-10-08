@@ -9,16 +9,21 @@ namespace Capstone
         public static void Greeting()
         {
             Console.WriteLine("Welcome to the Vendo-Matic 800 Vending Machine");
+            Console.WriteLine();
         }
 
         public static void HowMuchMoney()
         {
+            Console.Clear();
             Console.WriteLine("How much would you like to feed (Whole Dollar Amounts Only):");
         }
 
         public static void DisplayMainMenu()
         {
-            Console.WriteLine("Please select from the following items");
+            Console.Clear();
+            Console.WriteLine("Main Menu");
+            Console.WriteLine();
+            Console.WriteLine("Please select from the following items:");
             Console.WriteLine("(1) Display Vending Machine Items");
             Console.WriteLine("(2) Purchase");
             Console.WriteLine("(3) Exit");
@@ -26,10 +31,14 @@ namespace Capstone
 
         public static void DisplayPurchaseMenu()
         {
-            Console.WriteLine("Please select from the following items");
+            Console.Clear();
+            Console.WriteLine("Purchase Menu");
+            Console.WriteLine();
+            Console.WriteLine("Please select from the following items:");
             Console.WriteLine("(1) Feed Money");
             Console.WriteLine("(2) Select Product");
             Console.WriteLine("(3) Finish Transaction");
+            Console.WriteLine();
         }
 
         public static void DisplayCurrentMoney(decimal balance)
@@ -39,6 +48,9 @@ namespace Capstone
 
         public static void DisplayInventory(Dictionary<string, Snack> inventory)
         {
+            Console.Clear();
+            Console.WriteLine("Current Inventory:");
+            Console.WriteLine();
 
             foreach (KeyValuePair<string, Snack> item in inventory)
             {
