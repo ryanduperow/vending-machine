@@ -7,14 +7,15 @@ namespace Capstone
     {
         public static void Main(string[] args)
         {
-            //ExtractInventory ei = new ExtractInventory();
-            //Dictionary<string, Snack> testDic = new Dictionary<string, Snack>();
-            //testDic = ei.ReadInventoryFile();
+            ExtractInventory ei = new ExtractInventory();
+            Dictionary<string, Snack> testDic = new Dictionary<string, Snack>();
+            testDic = ei.ReadInventoryFile();
 
             //Output op = new Output();
             //op.DisplayInventory(testDic);
-            
 
+            VendingMachine vm = new VendingMachine(testDic);
+            vm.MainMenu();
 
 
         }

@@ -6,12 +6,17 @@ namespace Capstone
 {
     public class Output
     {
-        public void Greeting()
+        public static void Greeting()
         {
             Console.WriteLine("Welcome to the Vendo-Matic 800 Vending Machine");
         }
 
-        public void DisplayMainMenu()
+        public static void HowMuchMoney()
+        {
+            Console.WriteLine("How much would you like to feed (Whole Dollar Amounts Only):");
+        }
+
+        public static void DisplayMainMenu()
         {
             Console.WriteLine("Please select from the following items");
             Console.WriteLine("(1) Display Vending Machine Items");
@@ -19,7 +24,7 @@ namespace Capstone
             Console.WriteLine("(3) Exit");
         }
 
-        public void DisplayPurchaseMenu()
+        public static void DisplayPurchaseMenu()
         {
             Console.WriteLine("Please select from the following items");
             Console.WriteLine("(1) Feed Money");
@@ -27,12 +32,12 @@ namespace Capstone
             Console.WriteLine("(3) Finish Transaction");
         }
 
-        public void DisplayCurrentMoney(decimal balance)
+        public static void DisplayCurrentMoney(decimal balance)
         {
             Console.WriteLine($"Current Money Provided: {balance}");
         }
 
-        public void DisplayInventory(Dictionary<string, Snack> inventory)
+        public static void DisplayInventory(Dictionary<string, Snack> inventory)
         {
 
             foreach (KeyValuePair<string, Snack> item in inventory)
@@ -41,7 +46,7 @@ namespace Capstone
                 {
                     Console.WriteLine($"{item.Key} {item.Value.Name} ${item.Value.Price} QTY: SOLD OUT");
                 }
-                Console.WriteLine($"{item.Key} {item.Value.Name} ${item.Value.Price} QYT: {item.Value.Quantity}");
+                Console.WriteLine($"{item.Key} {item.Value.Name} ${item.Value.Price} QTY: {item.Value.Quantity}");
             }
         }
     }

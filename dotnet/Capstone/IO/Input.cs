@@ -6,20 +6,20 @@ namespace Capstone
 {
     public class Input
     {
-        public string GetMenuInput()
+        public static string GetMenuInput()
         {
             string input = Console.ReadLine();
             return input;
         }
 
-        public decimal GetMoney()
+        public static decimal GetMoney()
         {
             string input = Console.ReadLine();
             decimal money = Decimal.Parse(input);
             return money;
         }
 
-        public string GetProduct()
+        public static string GetProduct()
         {
             Console.WriteLine("Please select item");
             string input = Console.ReadLine();
