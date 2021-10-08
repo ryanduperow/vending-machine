@@ -42,20 +42,23 @@ namespace Capstone
             Accounting ac = new Accounting();
 
             Output.DisplayPurchaseMenu();
+            Output.DisplayCurrentMoney(balance);
             string menuInput = Input.GetMenuInput();
+            
 
             if (menuInput == "1")
             {
                 Output.HowMuchMoney();
                 decimal amountFed = Input.GetMoney();
 
-                ac.FeedMoney(balance, amountFed);
+                balance = ac.FeedMoney(balance, amountFed);
                 Output.DisplayCurrentMoney(balance);
                 PurchaseMenu();
             }
             else if (menuInput == "2")
             {
                 SelectSnack();
+                PurchaseMenu();
             }
             else if (menuInput == "3")
             {
@@ -68,7 +71,7 @@ namespace Capstone
             //Output op = new Output();
             //ExtractInventory ei = new ExtractInventory();
             //Input ip = new Input();
-
+            Accounting ac = new Accounting();
             //Dictionary<string, Snack> inventory = ei.ReadInventoryFile();
             Output.DisplayInventory(Inventory);
 
@@ -89,6 +92,8 @@ namespace Capstone
             }
             else
             {
+                balance = ac.PurchaseItem(balance, Inventory[itemSelected].Price);
+                InventoryMethods.AdjustInventory(Inventory, itemSelected);
                 Console.WriteLine($"{Inventory[itemSelected].MessageDisplay()}");
             }
         }
