@@ -18,6 +18,12 @@ namespace Capstone
             return newBalance;
         }
 
+        public decimal CalculateTotalSales (decimal grossSales, decimal recentSale)
+        {
+            grossSales += recentSale;
+            return grossSales;
+        }
+
         public decimal MakeChange(decimal balance)
         {
             int balanceInCents = (int)(balance * 100);

@@ -6,13 +6,18 @@ namespace Capstone
 {
     public class VendingMachine
     {
-        public VendingMachine(Dictionary<string, Snack> inventory)
+        public VendingMachine(Dictionary<string, Snack> inventory, Dictionary<string, int> quantitySold)
         {
             Inventory = inventory;
+            QuantitySold = quantitySold;
+
         }
 
         public Dictionary<string, Snack> Inventory { get; private set; }
         public decimal Balance { get; set; } = 0;
+        public decimal GrossSales { get; set; }
+        public Dictionary<string, int> QuantitySold { get; set; }
+
 
         public void MainMenu()
         {
@@ -22,6 +27,7 @@ namespace Capstone
             Console.WriteLine();
             Output.DisplayMainMenu();
             string menuInput = Input.GetMenuInput();
+            Console.Clear();
 
             if (menuInput == "1")
             {
@@ -30,11 +36,20 @@ namespace Capstone
             }
             else if (menuInput == "2")
             {
+                Console.Clear();
                 PurchaseMenu();
             }
             else if (menuInput == "3")
             {
                 return;
+            }
+            else if (menuInput == "4")
+            {
+                foreach (KeyValuePair<string, int> snackItem in QuantitySold)
+                {
+                    LogHelper.Log(LogTypes.Sales, $"{snackItem.Key}|{snackItem.Value}");
+                }
+                LogHelper.Log(LogTypes.Sales, $"TOTAL SALES $ {GrossSales}");
             }
         }
 
@@ -66,8 +81,12 @@ namespace Capstone
                 }
                 else
                 {
+                    Output.DisplayInventory(Inventory);
+                    Console.WriteLine("Please select item:");                    
                     string itemSelected = Input.GetMenuInput();
                     SelectSnack(itemSelected);
+                    GrossSales = ac.CalculateTotalSales(GrossSales, Inventory[itemSelected].Price);
+                    QuantitySold[Inventory[itemSelected].Name] += 1;
                     LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} {Inventory[itemSelected].Name} {itemSelected} {Balance + Inventory[itemSelected].Price} {Balance}");
                     PurchaseMenu();
                 }

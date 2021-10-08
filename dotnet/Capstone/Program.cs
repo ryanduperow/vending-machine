@@ -11,10 +11,11 @@ namespace Capstone
             Dictionary<string, Snack> testDic = new Dictionary<string, Snack>();
             testDic = ei.ReadInventoryFile();
 
+            Dictionary<string, int> emptyReport = InventoryMethods.CreateBlankReport(testDic);
             //Output op = new Output();
             //op.DisplayInventory(testDic);
 
-            VendingMachine vm = new VendingMachine(testDic);
+            VendingMachine vm = new VendingMachine(testDic, emptyReport);
             vm.MainMenu();
 
 
