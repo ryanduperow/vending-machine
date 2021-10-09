@@ -12,8 +12,7 @@ namespace Capstone
             testDic = ei.ReadInventoryFile();
 
             Dictionary<string, int> emptyReport = InventoryMethods.CreateBlankReport(testDic);
-            //Output op = new Output();
-            //op.DisplayInventory(testDic);
+
 
             VendingMachine vm = new VendingMachine(testDic, emptyReport);
             vm.MainMenu();

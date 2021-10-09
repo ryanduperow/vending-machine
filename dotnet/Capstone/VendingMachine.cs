@@ -21,15 +21,14 @@ namespace Capstone
 
         public void MainMenu()
         {
-            //Output op = new Output();
-
+            Console.Clear();
             Output.Greeting();
             Output.DisplayMainMenu();
             string menuInput = Input.GetMenuInput();
-            Console.Clear();
 
             if (menuInput == "1")
             {
+                Console.Clear();
                 Output.DisplayInventory(Inventory);
                 Console.WriteLine();
                 Console.WriteLine("Press enter to go back to the Main Menu");
@@ -37,7 +36,6 @@ namespace Capstone
             }
             else if (menuInput == "2")
             {
-                Console.Clear();
                 PurchaseMenu();
             }
             else if (menuInput == "3")
@@ -46,16 +44,16 @@ namespace Capstone
             }
             else if (menuInput == "4")
             {
-                Console.Clear();
-                Console.WriteLine("Generating Sales Report.....");
-                Console.WriteLine("Press enter to go back to the Main Menu");
-                Console.ReadLine();
-
                 foreach (KeyValuePair<string, int> snackItem in QuantitySold)
                 {
                     LogHelper.Log(LogTypes.Sales, $"{snackItem.Key}|{snackItem.Value}");
                 }
                 LogHelper.Log(LogTypes.Sales, $"TOTAL SALES $ {GrossSales}");
+
+                Console.Clear();
+                Console.WriteLine("Generating Sales Report.....");
+                Console.WriteLine("Press enter to go back to the Main Menu");
+                Console.ReadLine();
             }
 
             MainMenu();
@@ -64,7 +62,7 @@ namespace Capstone
         public void PurchaseMenu()
         {
             Accounting ac = new Accounting();
-
+            Console.Clear();
             Output.DisplayPurchaseMenu();
             Output.DisplayCurrentMoney(Balance);
             string menuInput = Input.GetMenuInput();
@@ -72,16 +70,14 @@ namespace Capstone
 
             if (menuInput == "1")
             {
+                Console.Clear();
                 Output.HowMuchMoney();
                 decimal amountFed = Input.GetMoney();
-
                 Balance = ac.FeedMoney(Balance, amountFed);
-                LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} FEED MONEY: {amountFed} {Balance}");
+                LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} FEED MONEY: ${amountFed}.00 ${Balance}.00");
                 Console.WriteLine($"Success! You've added ${amountFed}");
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
-                //Output.DisplayCurrentMoney(Balance);
-                //PurchaseMenu();
             }
             else if (menuInput == "2")
             {
@@ -93,23 +89,29 @@ namespace Capstone
                     Console.ReadLine();
                 }
                 else
-                { 
+                {
+                    Console.Clear();
                     Output.DisplayInventory(Inventory);
                     Console.WriteLine();
-                    Console.WriteLine("Please select an item from above:");                    
+                    Output.DisplayCurrentMoney(Balance);
+                    Console.WriteLine();
+                    Console.WriteLine("Please select an item from above:");
                     string itemSelected = Input.GetMenuInput();
                     SelectSnack(itemSelected);
                     GrossSales = ac.CalculateTotalSales(GrossSales, Inventory[itemSelected].Price);
                     QuantitySold[Inventory[itemSelected].Name] += 1;
-                    LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} {Inventory[itemSelected].Name} {itemSelected} {Balance + Inventory[itemSelected].Price} {Balance}");
+                    LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} {Inventory[itemSelected].Name} {itemSelected} ${Balance + Inventory[itemSelected].Price} ${Balance}"); 
 
                 }
             }
             else if (menuInput == "3")
             {
+                Console.Clear();
                 ac.MakeChange(Balance);
                 LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} GIVE CHANGE: {Balance} $0.00");
                 Balance = 0;
+                Console.WriteLine("Press enter to continue");
+                Console.ReadLine();
                 MainMenu();
             }
 
@@ -118,14 +120,8 @@ namespace Capstone
 
         public void SelectSnack(string itemSelected)
         {
-            //Output op = new Output();
-            //ExtractInventory ei = new ExtractInventory();
-            //Input ip = new Input();
-            Accounting ac = new Accounting();
-            //Dictionary<string, Snack> inventory = ei.ReadInventoryFile();
-            //dOutput.DisplayInventory(Inventory);
 
-            //string itemSelected = Input.GetMenuInput();
+            Accounting ac = new Accounting();
 
             if (Inventory.ContainsKey(itemSelected) && Inventory[itemSelected].Price < Balance)
             {
@@ -159,9 +155,6 @@ namespace Capstone
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
             }
-
-            Console.Clear();
-            PurchaseMenu();
         }
 
     }

@@ -32,8 +32,6 @@ namespace Capstone
             int nickelCount = 0;
             int remainder = 0;
 
-            Console.Clear();
-
             if (balanceInCents == 0)
             {
                 Console.WriteLine($"Your balance is 0, no change for you!");
@@ -63,9 +61,6 @@ namespace Capstone
                 }
 
             }
-
-            Console.WriteLine("Press enter to continue");
-            Console.ReadLine();
 
             return 0;
         }

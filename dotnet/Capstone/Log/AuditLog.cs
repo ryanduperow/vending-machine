@@ -22,8 +22,6 @@ namespace Capstone
             {
                 sw.WriteLine(message);
             }
-        }
-
-        
+        }    
     }
 }

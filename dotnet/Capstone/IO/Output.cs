@@ -14,13 +14,11 @@ namespace Capstone
 
         public static void HowMuchMoney()
         {
-            Console.Clear();
             Console.WriteLine("How much would you like to feed (Whole Dollar Amounts Only):");
         }
 
         public static void DisplayMainMenu()
         {
-            Console.Clear();
             Console.WriteLine("Main Menu");
             Console.WriteLine();
             Console.WriteLine("Please select from the following items:");
@@ -31,7 +29,6 @@ namespace Capstone
 
         public static void DisplayPurchaseMenu()
         {
-            Console.Clear();
             Console.WriteLine("Purchase Menu");
             Console.WriteLine();
             Console.WriteLine("Please select from the following items:");
@@ -43,12 +40,11 @@ namespace Capstone
 
         public static void DisplayCurrentMoney(decimal balance)
         {
-            Console.WriteLine($"Current Money Provided: {balance}");
+            Console.WriteLine($"Current Balance: {balance}");
         }
 
         public static void DisplayInventory(Dictionary<string, Snack> inventory)
         {
-            Console.Clear();
             Console.WriteLine("Current Inventory:");
             Console.WriteLine();
 
