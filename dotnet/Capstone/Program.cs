@@ -7,14 +7,14 @@ namespace Capstone
     {
         public static void Main(string[] args)
         {
-            ExtractInventory ei = new ExtractInventory();
+            InventoryMethods im = new InventoryMethods();
 
             //create usable inventory and blank sales report form from external inventory file
-            Dictionary<string, Snack> testDic = ei.ReadInventoryFile();
-            Dictionary<string, int> emptyReport = InventoryMethods.CreateBlankReport(testDic);
+            Dictionary<string, Snack> inventory = im.ReadInventoryFile();
+            Dictionary<string, int> emptyReport = im.CreateBlankReport(inventory);
 
 
-            VendingMachine vm = new VendingMachine(testDic, emptyReport);
+            VendingMachine vm = new VendingMachine(inventory, emptyReport);
             vm.MainMenu();
 
 

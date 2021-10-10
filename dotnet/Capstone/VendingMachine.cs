@@ -123,7 +123,7 @@ namespace Capstone
 
             Accounting ac = new Accounting();
 
-            if (Inventory.ContainsKey(itemSelected) && Inventory[itemSelected].Price < Balance)
+            if (Inventory.ContainsKey(itemSelected) && Inventory[itemSelected].Price <= Balance)
             {
                 Balance = ac.PurchaseItem(Balance, Inventory[itemSelected].Price);
                 Inventory[itemSelected].InventoryAdjust();                
