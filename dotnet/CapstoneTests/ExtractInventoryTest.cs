@@ -13,14 +13,22 @@ namespace CapstoneTests
         [TestMethod]
         public void MyTestMethod()
         {
-            ExtractInventory ei = new ExtractInventory();
+            InventoryMethods im = new InventoryMethods();
+            
+            string directory = Environment.CurrentDirectory;
+            string fileName = "test-1.txt";
 
-            List<string[]> list1 = new List<string[]>();
-            list1.Add(new string[] { "A1", "Potato Crisps", "3.05", "Chip" });
-            list1.Add(new string[] { "A2", "Stackers", "1.45", "Chip" });
-            list1.Add(new string[] { "A3", "Grain Waves", "2.75", "Chip" });
-            list1.Add(new string[] { "A4", "Cloud Popcorn", "3.65", "Chip" });
+            Dictionary<string, Snack> expected = new Dictionary<string, Snack>();
+            expected["A1"] = new Chip("Potato Crisps", 3.05M);
+            expected["A2"] = new Capstone.Chip("Stackers", 1.45M);
+            expected["A3"] = new Capstone.Chip("Grain Waves", 2.75M);
+            expected["A4"] = new Capstone.Chip("Cloud Popcorn", 3.65M);                       
 
+            Dictionary<string, Snack> actual = im.ReadInventoryFile(directory, fileName);
+
+            
+
+            CollectionAssert.ReferenceEquals(expected, actual);
         }
     }
 }

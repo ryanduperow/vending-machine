@@ -7,11 +7,9 @@ namespace Capstone
 {
     public class InventoryMethods
     {
-        public Dictionary<string, Snack> ReadInventoryFile()
+        public Dictionary<string, Snack> ReadInventoryFile(string directory, string fileName)
         {
-
-            string directory = Environment.CurrentDirectory;
-            string fileName = "vendingmachine.csv";
+                        
             string fullPath = Path.Combine(directory, fileName);
 
             Dictionary<string, Snack> inventoryItems = new Dictionary<string, Snack>();

@@ -10,7 +10,10 @@ namespace Capstone
             InventoryMethods im = new InventoryMethods();
 
             //create usable inventory and blank sales report form from external inventory file
-            Dictionary<string, Snack> inventory = im.ReadInventoryFile();
+            string directory = Environment.CurrentDirectory;
+            string fileName = "vendingmachine.csv";
+
+            Dictionary<string, Snack> inventory = im.ReadInventoryFile(directory, fileName);
             Dictionary<string, int> emptyReport = im.CreateBlankReport(inventory);
 
 
