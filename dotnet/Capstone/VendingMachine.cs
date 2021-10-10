@@ -73,6 +73,10 @@ namespace Capstone
                 Console.Clear();
                 Output.HowMuchMoney();
                 decimal amountFed = Input.GetMoney();
+                //if (amountFed.)
+                //{
+
+                //}
                 Balance = ac.FeedMoney(Balance, amountFed);
                 LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} FEED MONEY: ${amountFed}.00 ${Balance}.00");
                 Console.WriteLine($"Success! You've added ${amountFed}");

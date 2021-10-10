@@ -15,8 +15,27 @@ namespace Capstone
         public static decimal GetMoney()
         {
             string input = Console.ReadLine();
-            decimal money = Decimal.Parse(input);
-            return money;
+            try
+            {
+                
+                decimal money = Decimal.Parse(input);
+                if (money < 0)
+                {
+                    Console.WriteLine("Please enter a valid amount (Whole Dollar Amounts Only):");
+                    return 0;
+                    
+                }
+                return money;
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Please enter a valid amount (Whole Dollar Amounts Only):");
+                return 0;
+                
+            }
+            
+            //decimal money = Decimal.Parse(input);
+            //return money;
         }
 
         public static string GetProduct()
