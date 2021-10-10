@@ -16,5 +16,9 @@ namespace Capstone
         {
             return "Glug Glug, Yum!";
         }
+        public override void InventoryAdjust()
+        {
+            Quantity -= 1;
+        }
     }
 }

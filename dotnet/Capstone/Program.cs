@@ -8,9 +8,9 @@ namespace Capstone
         public static void Main(string[] args)
         {
             ExtractInventory ei = new ExtractInventory();
-            Dictionary<string, Snack> testDic = new Dictionary<string, Snack>();
-            testDic = ei.ReadInventoryFile();
 
+            //create usable inventory and blank sales report form from external inventory file
+            Dictionary<string, Snack> testDic = ei.ReadInventoryFile();
             Dictionary<string, int> emptyReport = InventoryMethods.CreateBlankReport(testDic);
 
 

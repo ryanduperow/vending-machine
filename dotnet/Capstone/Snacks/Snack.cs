@@ -11,5 +11,7 @@ namespace Capstone
         public int Quantity { get; set; } = 5;
 
         public abstract string MessageDisplay();
+
+        public abstract void InventoryAdjust();
     }
 }

@@ -48,7 +48,7 @@ namespace Capstone
                 {
                     LogHelper.Log(LogTypes.Sales, $"{snackItem.Key}|{snackItem.Value}");
                 }
-                LogHelper.Log(LogTypes.Sales, $"TOTAL SALES $ {GrossSales}");
+                LogHelper.Log(LogTypes.Sales, $"TOTAL SALES ${GrossSales}");
 
                 Console.Clear();
                 Console.WriteLine("Generating Sales Report.....");
@@ -112,7 +112,7 @@ namespace Capstone
             {
                 Console.Clear();
                 ac.MakeChange(Balance);
-                LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} GIVE CHANGE: {Balance} $0.00");
+                LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} GIVE CHANGE: ${Balance} $0.00");
                 Balance = 0;
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
@@ -130,7 +130,8 @@ namespace Capstone
             if (Inventory.ContainsKey(itemSelected) && Inventory[itemSelected].Price < Balance)
             {
                 Balance = ac.PurchaseItem(Balance, Inventory[itemSelected].Price);
-                InventoryMethods.AdjustInventory(Inventory, itemSelected);
+                Inventory[itemSelected].InventoryAdjust();
+                //InventoryMethods.AdjustInventory(Inventory, itemSelected);
                 Console.Clear();
                 Console.WriteLine($"{Inventory[itemSelected].MessageDisplay()}");
                 Console.WriteLine("Press enter to continue");

@@ -9,13 +9,16 @@ namespace Capstone
         public Gum(string name, decimal price)
         {
             Name = name;
-            Price = price;
-           
+            Price = price;           
         }
 
         public override string MessageDisplay()
         {
             return "Chew Chew, Yum!";
+        }
+        public override void InventoryAdjust()
+        {
+            Quantity -= 1;
         }
     }
 }

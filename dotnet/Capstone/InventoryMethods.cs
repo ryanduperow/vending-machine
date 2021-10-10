@@ -6,10 +6,10 @@ namespace Capstone
 {
     public class InventoryMethods
     {
-        public static void AdjustInventory(Dictionary<string, Snack> inventory, string itemSelected)
-        {
-            inventory[itemSelected].Quantity -= 1;
-        }
+        //public static void AdjustInventory(Dictionary<string, Snack> inventory, string itemSelected)
+        //{
+        //    inventory[itemSelected].Quantity -= 1;
+        //}
 
         public static Dictionary<string, int> CreateBlankReport(Dictionary<string, Snack> inventory)
         {
