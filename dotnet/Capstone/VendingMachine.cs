@@ -72,14 +72,10 @@ namespace Capstone
             {
                 Console.Clear();
                 Output.HowMuchMoney();
-                decimal amountFed = Input.GetMoney();
-                //if (amountFed.)
-                //{
-
-                //}
+                decimal amountFed = Input.GetMoney();                
                 Balance = ac.FeedMoney(Balance, amountFed);
                 LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} FEED MONEY: ${amountFed}.00 ${Balance}.00");
-                Console.WriteLine($"Success! You've added ${amountFed}");
+                Console.WriteLine($"Success! You've added ${amountFed.ToString("0.00")}");
                 Console.WriteLine("Press enter to continue");
                 Console.ReadLine();
             }
@@ -100,7 +96,7 @@ namespace Capstone
                     Output.DisplayCurrentMoney(Balance);
                     Console.WriteLine();
                     Console.WriteLine("Please select an item from above:");
-                    string itemSelected = Input.GetMenuInput();
+                    string itemSelected = Input.GetMenuInput().ToUpper();
                     SelectSnack(itemSelected);
                     GrossSales = ac.CalculateTotalSales(GrossSales, Inventory[itemSelected].Price);
                     QuantitySold[Inventory[itemSelected].Name] += 1;
@@ -130,8 +126,7 @@ namespace Capstone
             if (Inventory.ContainsKey(itemSelected) && Inventory[itemSelected].Price < Balance)
             {
                 Balance = ac.PurchaseItem(Balance, Inventory[itemSelected].Price);
-                Inventory[itemSelected].InventoryAdjust();
-                //InventoryMethods.AdjustInventory(Inventory, itemSelected);
+                Inventory[itemSelected].InventoryAdjust();                
                 Console.Clear();
                 Console.WriteLine($"{Inventory[itemSelected].MessageDisplay()}");
                 Console.WriteLine("Press enter to continue");

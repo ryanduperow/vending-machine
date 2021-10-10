@@ -10,7 +10,7 @@ namespace Capstone
         public Dictionary<string, Snack> ReadInventoryFile()
         {
 
-            string directory = @"C:\Users\Student\workspace\module1-capstone-c-team-4\dotnet";
+            string directory = Environment.CurrentDirectory;
             string fileName = "vendingmachine.csv";
 
 

@@ -40,7 +40,7 @@ namespace Capstone
 
         public static void DisplayCurrentMoney(decimal balance)
         {
-            Console.WriteLine($"Current Balance: {balance}");
+            Console.WriteLine($"Current Balance: ${balance.ToString("0.00")}");
         }
 
         public static void DisplayInventory(Dictionary<string, Snack> inventory)

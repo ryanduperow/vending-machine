@@ -21,7 +21,7 @@ namespace Capstone
                 decimal money = Decimal.Parse(input);
                 if (money < 0)
                 {
-                    Console.WriteLine("Please enter a valid amount (Whole Dollar Amounts Only):");
+                    Console.WriteLine("Please enter a valid amount (WHOLE DOLLAR amounts only):");
                     return 0;
                     
                 }
@@ -29,7 +29,7 @@ namespace Capstone
             }
             catch (Exception)
             {
-                Console.WriteLine("Please enter a valid amount (Whole Dollar Amounts Only):");
+                Console.WriteLine("Please enter a valid amount (WHOLE DOLLAR amounts only):");
                 return 0;
                 
             }
