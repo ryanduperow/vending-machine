@@ -8,8 +8,15 @@ namespace Capstone
     {
         public decimal FeedMoney(decimal balance, decimal amountFed)
         {
-            decimal newBalance = balance + amountFed;
-            return newBalance;
+            try
+            {
+                decimal newBalance = balance + amountFed;
+                return newBalance;
+            }
+            catch (Exception)
+            {                
+                return balance;
+            }             
         }
 
         public decimal PurchaseItem(decimal balance, decimal itemPrice)
@@ -27,11 +34,11 @@ namespace Capstone
         // Outputs a string with the users "change" and sets balance to zero
         public decimal MakeChange(decimal balance)
         {
-            int balanceInCents = (int)(balance * 100);
-            int quarterCount = 0;
-            int dimeCount = 0;
-            int nickelCount = 0;
-            int remainder = 0;
+            decimal balanceInCents = balance * 100;
+            decimal quarterCount = 0;
+            decimal dimeCount = 0;
+            decimal nickelCount = 0;
+
 
             if (balanceInCents == 0)
             {
@@ -39,25 +46,24 @@ namespace Capstone
             }
             else if (balanceInCents % 25 == 0)
             {
-                quarterCount = balanceInCents / 25;
+                quarterCount = Math.Floor(balanceInCents / 25);
                 Console.WriteLine($"Your change is {balance}, here are {quarterCount} quarters");
             }
             else
             {
-                quarterCount = balanceInCents / 25;
-                remainder = balanceInCents % 25;
+                quarterCount = Math.Floor(balanceInCents / 25);
                 balanceInCents -= quarterCount * 25;
 
                 if (balanceInCents % 10 == 0)
                 {
-                    dimeCount = balanceInCents / 10;
+                    dimeCount = Math.Floor(balanceInCents / 10);
                     Console.WriteLine($"Your change is {balance}, here are {quarterCount} quarters and {dimeCount} dimes");
                 }
                 else
                 {
-                    dimeCount = balanceInCents / 10;
+                    dimeCount = Math.Floor(balanceInCents / 10);
                     balanceInCents -= dimeCount * 10;
-                    nickelCount = balanceInCents / 5;
+                    nickelCount = Math.Floor(balanceInCents / 5);
                     Console.WriteLine($"Your change is {balance}, here are {quarterCount} quarters and {dimeCount} dimes and {nickelCount} nickels");
                 }
 
