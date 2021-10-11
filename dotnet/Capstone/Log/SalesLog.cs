@@ -7,7 +7,7 @@ namespace Capstone
 {
     public class SalesLog : LogBase
     {
-        private string FileName { get; } = $"Sales_{DateTime.Now:MMddyyyyhhmmsstt}.txt";
+        private string FileName { get; } = $"Sales-{DateTime.Now:yyyy-MM-dd-HH-mm-ss}.txt";
         private string Location { get; } = Environment.CurrentDirectory;
         private string  FullPath { get; }
 
