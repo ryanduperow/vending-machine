@@ -7,6 +7,7 @@ namespace Capstone
 {
     public class InventoryMethods
     {
+        // Builds inventory list from input csv file
         public Dictionary<string, Snack> ReadInventoryFile(string directory, string fileName)
         {
                         
@@ -57,6 +58,7 @@ namespace Capstone
 
         }
 
+        // Creates blank sales report
         public Dictionary<string, int> CreateBlankReport(Dictionary<string, Snack> inventory)
         {
             Dictionary<string, int> emptyReport = new Dictionary<string, int>();

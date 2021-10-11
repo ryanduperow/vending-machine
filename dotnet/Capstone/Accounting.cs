@@ -24,6 +24,7 @@ namespace Capstone
             return grossSales;
         }
 
+        // Outputs a string with the users "change" and sets balance to zero
         public decimal MakeChange(decimal balance)
         {
             int balanceInCents = (int)(balance * 100);

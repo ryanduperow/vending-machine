@@ -98,10 +98,6 @@ namespace Capstone
                     Console.WriteLine("Please select an item from above:");
                     string itemSelected = Input.GetMenuInput().ToUpper();
                     SelectSnack(itemSelected);
-                    //GrossSales = ac.CalculateTotalSales(GrossSales, Inventory[itemSelected].Price);
-                    //QuantitySold[Inventory[itemSelected].Name] += 1;
-                    //LogHelper.Log(LogTypes.Audit, $"{DateTime.Now} {Inventory[itemSelected].Name} {itemSelected} ${Balance + Inventory[itemSelected].Price} ${Balance}"); 
-
                 }
             }
             else if (menuInput == "3")
@@ -118,6 +114,7 @@ namespace Capstone
             PurchaseMenu();
         }
 
+        // If the snack selection is valid, balance and inventory are adjusted and the transaction is logged in the Audit Log.
         public void SelectSnack(string itemSelected)
         {
 
