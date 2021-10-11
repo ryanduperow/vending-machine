@@ -10,25 +10,33 @@ namespace CapstoneTests
 
     public class ExtractInventoryTest
     {
-        [TestMethod]
-        public void MyTestMethod()
+        [DataTestMethod]
+        [DataRow("A1")]
+        [DataRow("A2")]
+        [DataRow("A3")]
+        [DataRow("A4")]
+        public void ExtractInventory(string key)
         {
             InventoryMethods im = new InventoryMethods();
-            
+
             string directory = Environment.CurrentDirectory;
             string fileName = "test-1.txt";
 
             Dictionary<string, Snack> expected = new Dictionary<string, Snack>();
             expected["A1"] = new Chip("Potato Crisps", 3.05M);
-            expected["A2"] = new Capstone.Chip("Stackers", 1.45M);
-            expected["A3"] = new Capstone.Chip("Grain Waves", 2.75M);
-            expected["A4"] = new Capstone.Chip("Cloud Popcorn", 3.65M);                       
+            expected["A2"] = new Chip("Stackers", 1.45M);
+            expected["A3"] = new Chip("Grain Waves", 2.75M);
+            expected["A4"] = new Chip("Cloud Popcorn", 3.65M);
 
             Dictionary<string, Snack> actual = im.ReadInventoryFile(directory, fileName);
 
-            
+            Snack expectedObj = expected[key];
+            Snack actualObj = actual[key];
 
-            CollectionAssert.ReferenceEquals(expected, actual);
+
+            Assert.AreEqual(expectedObj.Name, actualObj.Name);
+            Assert.AreEqual(expectedObj.Price, actualObj.Price);
+            Assert.AreEqual(expectedObj.Quantity, actualObj.Quantity);
         }
     }
 }
